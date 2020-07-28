@@ -5,11 +5,12 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 //import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 //components
-import Navbar from './components/Navbar'
+import Navbar from './components/Layout/Navbar'
 //pages 
 import home from './pages/home';
 import login from './pages/login';
 import signup from './pages/signup';
+import user from './pages/user'
 //jwt--decode
 import jwtDecode from 'jwt-decode';
 import AuthRoute from './util/AuthRoute'
@@ -80,6 +81,8 @@ class App extends Component {
             <Route exact path='/' component={home}/>
             <AuthRoute exact path='/login' component={login}   /*authenticated={authenticated}*/        />
             <AuthRoute exact path='/signup' component={signup} /*authenticated={authenticated}*/        />
+            <Route exact path="/users/:handle" component={user}/>
+            <Route exact path="/users/:handle/scream/:screamId" component={user}/>
           </Switch>
           </div>
         </Router>

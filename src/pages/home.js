@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
-import Scream from '../components/Scream';
+import Scream from '../components/Scream/Scream';
 import PropTypes from 'prop-types';
 
 //import { Typography } from '@material-ui/core';
 import axios from 'axios';
 //import path from 'path';
 
-import Profile from '../components/Profile';
+import Profile from '../components/Profile/Profile';
 import {connect} from 'react-redux'
 import { getScreams} from '../redux/actions/dataActions'
-//const s='https://us-central1-socialape-bde5e.cloudfunctions.net/api/screams';
-
 class home extends Component {
 
     // state={

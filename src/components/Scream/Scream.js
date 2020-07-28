@@ -9,11 +9,12 @@ import React, { Component } from 'react'
 import dayjs from 'dayjs';
 import relativeTime from "dayjs/plugin/relativeTime";
 import PropTypes from 'prop-types'
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 import DeleteScream from './DeleteScream'
 //mui  stuff
 import withStyles from '@material-ui/core/styles/withStyles'
 import Card from '@material-ui/core/Card';
+import ScreamDialog from './ScreamDialog'
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
@@ -21,7 +22,7 @@ import { Link } from 'react-router-dom';
 
 //redux
 import {connect} from 'react-redux';
-import {likeScream,unlikeScream} from '../redux/actions/dataActions'
+import {likeScream,unlikeScream} from '../../redux/actions/dataActions'
 
 
 //icons
@@ -91,11 +92,14 @@ const { classes,scream:{body,createdAt,userImage,likeCount,commentCount,userHand
 const handle="jane"
 
  const likeButton=!authenticated?(
-    <MyButton tip="like">
-        <Link to="/login">
-        <FavoriteBorder color="primary"/>
-        </Link>
-    </MyButton>
+    <Link to="/login">
+        <MyButton tip="like">  
+           <FavoriteBorder color="primary"/>
+        </MyButton>
+        
+        
+    </Link>
+  
 ):(
     this.likedScream()?(
         <MyButton tip="Undo like"onClick={this.unlikeScream}>
@@ -130,7 +134,7 @@ const deleteButton=authenticated && userHandle===handle?(
                        <ChatIcon color="primary"/>
                    </MyButton>
                    <span>{commentCount} comments</span>
-
+                   <ScreamDialog screamId={screamId} userHandle={userHandle} openDialog={this.props.openDialog}/>
                 </CardContent>
             </Card>
         )
@@ -142,7 +146,8 @@ Scream.propTypes={
     likeScream:PropTypes.func.isRequired,
     unlikeScream:PropTypes.func.isRequired,
     scream:PropTypes.object.isRequired,
-    classes:PropTypes.object.isRequired
+    classes:PropTypes.object.isRequired,
+    openDialog:PropTypes.bool
 }
 const mapStateToProps=(state)=>({
 user:state.user

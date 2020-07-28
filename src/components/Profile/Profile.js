@@ -26,7 +26,7 @@ import Typography from '@material-ui/core/Typography';
 
 //redux
 import { connect } from 'react-redux';
-import {logoutUser,uploadImage} from '../redux/actions/userActions'
+import {logoutUser,uploadImage} from '../../redux/actions/userActions'
 
 import EditDetails from './EditDetails';
 
